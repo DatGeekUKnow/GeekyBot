@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # secret config
-config.js
+config.json
