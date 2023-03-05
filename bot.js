@@ -38,7 +38,7 @@ client.on(Events.InteractionCreate, async interaction => {
         console.error(`No command matching ${interaction.commandName} was found.`);
         return;
     } else {
-        console.log(`Succesfully handled ${interaction.commandName} request!`)
+        console.log(`Succesfully handled ${interaction.commandName} request by ${interaction.user.username} in ${interaction.guild.name}!`)
     }
     
     try {
