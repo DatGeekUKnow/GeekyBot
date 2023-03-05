@@ -26,7 +26,7 @@ for (const file of commandFiles) {
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
 client.once(Events.ClientReady, c => {
-    console.log(`Ready! Loggin in as ${c.user.tag}`);
+    console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -37,6 +37,8 @@ client.on(Events.InteractionCreate, async interaction => {
     if (!command) {
         console.error(`No command matching ${interaction.commandName} was found.`);
         return;
+    } else {
+        console.log(`Succesfully handled ${interaction.commandName} request!`)
     }
     
     try {
