@@ -14,6 +14,7 @@ module.exports = {
 
         try {
             await command.execute(interaction);
+            console.log(`Succesfully handled ${interaction.commandName} request by ${interaction.user.username} in ${interaction.guild.name}!`)
         } catch (error) {
             console.error(`Error executing ${interaction.commandName}`);
             console.error(error);
