@@ -1,17 +1,35 @@
 const chalk = require('chalk');
-const fs = require('node:fs');
+const { readdirSync } = require('fs');
+const path = require('node:path');
+
+
+const getFileList = (dirName) => {
+    let files = [];
+    const items = readdirSync(dirName, { withFileTypes: true });
+
+    for (const item of items) {
+        if (item.isDirectory()) {
+            files = [...files, ...getFileList(`${dirName}/${item.name}`)];
+        } else {
+            files.push(`${dirName}/${item.name}`);
+        }
+    }
+    return files;
+};
+
 
 module.exports = async function loadCommands(bot) {
-    const commandsPath = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/commands';
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-
+    const commandsPath = path.join(__dirname.substring(0, __dirname.lastIndexOf('/')), 'commands');
+    
+    const commandFiles = getFileList(commandsPath);
     bot.logger.info("COMMANDS", `Loading ${commandFiles.length} commands... (This may take a while)`)
 
 
     for await (const file of commandFiles) {
-        const command = require(`../commands/${file}`);
+        const command = require(`${file}`);
 
-        if (!command.name) {
+
+        if (!command.data.name) {
             throw new TypeError(`[ERROR] name is required for commands! (${file})`);
         }
         
@@ -20,21 +38,21 @@ module.exports = async function loadCommands(bot) {
         }
 
         const data = {
-            name: command.name,
+            name: command.data.name,
             description: command?.description ?? "Empty description",
             options: command?.options ?? []
         };
 
-        const cmd = bot.application?.commands.cache.find((c) = c.name === command.name);
+        const cmd = bot.application?.commands.cache.find((c) => c.name === command.data.name);
         if (!cmd) {
             bot.application?.commands.create(data);
         }
 
         // debug
-        bot.logger.debug(`CMD DEBUG`, `Loaded ${command.name}.js`);
+        bot.logger.debug(`CMD DEBUG`, `Loaded ${command.data.name}.js`);
 
-        delete require.cache[require.resolve(`../events/${file}`)];
-        bot.commands.set (command.name, command);
+        delete require.cache[require.resolve(`${file}`)];
+        bot.commands.set (command.data.name, command);
     }
 
     console.log(chalk.green('[DatGeekUKnow]') + chalk.cyan(' Thanks for using GeekyBot!'));
