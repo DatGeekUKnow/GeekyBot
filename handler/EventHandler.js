@@ -2,7 +2,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 module.exports = function loadEvents(bot) {
-    const eventFiles = fs.readdirSync((__dirname.substring(0, __dirname.lastIndexOf('/'))) + '/events').filter(file => file.endsWith('.js'));
+    const eventsPath = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/events';
+    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
     
     eventFiles.forEach((file) => {
         const event = require(`../events/${file}`);
