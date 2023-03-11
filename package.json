@@ -5,7 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "start": "node .",
-    "deploy-cmd": "node deploy-commands.js"
+    "deploy-cmd": "node deploy-commands.js",
+    "delete-cmd": "node delete-commands.js"
   },
   "repository": {
     "type": "git",
