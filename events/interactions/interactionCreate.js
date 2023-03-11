@@ -4,8 +4,7 @@ const { owners } = require("../../config.json");
 module.exports = {
     name: Events.InteractionCreate,
     async execute(bot, interaction) {
-        if (!interaction.isCommand()) return;
-        if (!interaction.inGuild()) return;
+        if (!interaction.isChatInputCommand()) return;
         
         try {
             const command = bot.commands.get(interaction.command?.name ?? "");

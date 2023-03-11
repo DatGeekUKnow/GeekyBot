@@ -37,21 +37,8 @@ module.exports = async function loadCommands(bot) {
             throw new TypeError(`[ERROR] execute function is required for commands! (${file})`);
         }
 
-        const data = {
-            name: command.data.name,
-            description: command?.description ?? "Empty description",
-            options: command?.options ?? []
-        };
-
-        const cmd = bot.application?.commands.cache.find((c) => c.name === command.data.name);
-        if (!cmd) {
-            bot.application?.commands.create(data);
-        }
-
         // debug
         bot.logger.debug(`CMD DEBUG`, `Loaded ${command.data.name}.js`);
-
-        delete require.cache[require.resolve(`${file}`)];
         bot.commands.set (command.data.name, command);
     }
 
