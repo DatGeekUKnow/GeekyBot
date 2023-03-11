@@ -1,12 +1,28 @@
-const fs = require('node:fs');
+const { readdirSync } = require('fs');
 const path = require('node:path');
 
+const getFileList = (dirName) => {
+    let files = [];
+    const items = readdirSync(dirName, { withFileTypes: true });
+
+    for (const item of items) {
+        if (item.isDirectory()) {
+            files = [...files, ...getFileList(`${dirName}/${item.name}`)];
+        } else {
+            files.push(`${dirName}/${item.name}`);
+        }
+    }
+    return files;
+};
+
 module.exports = function loadEvents(bot) {
-    const eventsPath = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/events';
-    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+    const eventsPath = path.join(__dirname.substring(0, __dirname.lastIndexOf('/')), 'events');
+
+    const eventFiles = getFileList(eventsPath);
+    bot.logger.info("EVENTS", `Loading ${eventFiles.length} events...`);
     
     eventFiles.forEach((file) => {
-        const event = require(`../events/${file}`);
+        const event = require(`${file}`);
 
         let type = (file.includes('player.')) ? 'player' : 'bot';
         
@@ -22,7 +38,9 @@ module.exports = function loadEvents(bot) {
             bot.on(event.name, event.execute.bind(null, bot));
         }
 
-        delete require.cache[require.resolve(`../events/${file}`)];
-
+        delete require.cache[require.resolve(`${file}`)];
+        
+        // debug
+        bot.logger.debug(`EVT DEBUG`, `Loaded ${event.name}.js`);
     });
 };
