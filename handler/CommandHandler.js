@@ -1,6 +1,5 @@
 const chalk = require('chalk');
 const fs = require('node:fs');
-const path = require('node:path');
 
 module.exports = async function loadCommands(bot) {
     const commandsPath = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/commands';
