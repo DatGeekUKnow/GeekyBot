@@ -2,6 +2,7 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 const { Player } = require("discord-player");
 const Logger = require('./modules/Logger');
+const Embeds = require('./modules/Embeds');
 
 
 // Create a new client instance
@@ -16,6 +17,8 @@ const bot = new Client({ intents: [
 bot.commands = new Collection();
 
 bot.logger = Logger;
+bot.say = Embeds;
+
 
 bot.player = new Player(bot, {
     leaveOnEnd: true,
