@@ -4,7 +4,7 @@
   "description": "Discord Bot for Stuff",
   "main": "bot.js",
   "scripts": {
-    "start": "node .",
+    "start": "node --no-warnings .",
     "deploy-cmd": "node deploy-commands.js"
   },
   "repository": {

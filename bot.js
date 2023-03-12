@@ -1,5 +1,7 @@
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const Logger = require('./modules/Logger');
+
 
 // Create a new client instance
 const bot = new Client({ intents: [
@@ -10,6 +12,8 @@ const bot = new Client({ intents: [
 });
 
 bot.commands = new Collection();
+
+bot.logger = Logger;
 
 require("./handlers/EventHandler")(bot);
 
