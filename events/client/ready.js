@@ -4,6 +4,6 @@ module.exports = {
     name: Events.ClientReady,
     once: true,
     execute(bot) {
-        require('../handlers/CommandHandler')(bot);
+        require('../../handlers/CommandHandler')(bot);
     },
 };
