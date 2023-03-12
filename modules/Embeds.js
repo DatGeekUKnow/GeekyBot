@@ -29,7 +29,7 @@ function successMessage(interaction, text, ephemeral = false) {
     throw Error("'text' must be passed down as param! (successMessage)");
   }
 
-  const embedS = new DJS.MessageEmbed()
+  const embedS = new DJS.EmbedBuilder()
     .setDescription(text)
     .setColor(interaction.guild.me.displayColor || "#00FFFF");
 
@@ -54,7 +54,7 @@ function warnMessage(interaction, text) {
     throw Error("'text' must be passed down as param! (warnMessage)");
   }
 
-  const embedW = new DJS.MessageEmbed()
+  const embedW = new DJS.EmbedBuilder()
     .setDescription(text)
     .setColor("ORANGE");
 
@@ -79,9 +79,9 @@ function errorMessage(interaction, text) {
     throw Error("'text' must be passed down as param! (errorMessage)");
   }
 
-  const embedE = new DJS.MessageEmbed()
+  const embedE = new DJS.EmbedBuilder()
     .setDescription(text)
-    .setColor("RED");
+    .setColor("Red");
 
   if (interaction.deferred || interaction.replied) {
     return interaction.editReply({ embeds: [embedE] }).catch(console.error);
