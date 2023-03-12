@@ -1,4 +1,4 @@
-const fs = require('node:fs');
+const chalk = require('chalk');
 const path = require('node:path');
 const Util = require('../modules/Util');
 
@@ -22,5 +22,12 @@ module.exports = function loadEvents(bot) {
         
         bot.logger.debug(`CMD DEBUG`, `Loaded ${command.data.name}.js`)
     }
+
+    console.log(chalk.green('[DatGeekUKnow]') + chalk.cyan(' Thanks for using GeekyBot 💜'))
+    console.log(chalk.red('=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+='))
+    console.log(chalk.green('Bot: ') + chalk.cyan(`${bot.user.tag}`))
+    console.log(chalk.green('Status: ') + chalk.cyan('Initialized'))
+    console.log(chalk.red('=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+='))
+
 }
 

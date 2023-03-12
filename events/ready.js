@@ -5,6 +5,5 @@ module.exports = {
     once: true,
     execute(bot) {
         require('../handlers/CommandHandler')(bot);
-        console.log(`Ready! Logged in as ${bot.user.tag}`);
     },
 };
