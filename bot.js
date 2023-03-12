@@ -1,5 +1,6 @@
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const { Player } = require("discord-player");
 const Logger = require('./modules/Logger');
 
 
@@ -15,6 +16,15 @@ const bot = new Client({ intents: [
 bot.commands = new Collection();
 
 bot.logger = Logger;
+
+bot.player = new Player(bot, {
+    leaveOnEnd: true,
+    leaveOnStop: true,
+    leaveOnEmpty: true,
+    leaveOnEmptyCooldown: 60000,
+    autoSelfDeaf: true,
+    initialVolume: 100
+});
 
 require("./handlers/EventHandler")(bot);
 
