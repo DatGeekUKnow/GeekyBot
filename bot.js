@@ -7,7 +7,8 @@ const Logger = require('./modules/Logger');
 const bot = new Client({ intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMessages
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates
     ] 
 });
 

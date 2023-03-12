@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DatGeekUKnow/GeekyBot#readme",
   "dependencies": {
+    "discord-player": "^6.1.0",
     "discord.js": "^14.7.1"
   }
 }
