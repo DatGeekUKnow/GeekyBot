@@ -13,7 +13,7 @@ module.exports = function loadEvents(bot) {
         const event = require(file);
 
         // need to subscribe player events to bot.player
-        if (file.name.lastIndexOf('player') > 0) {
+        if (file.name?.lastIndexOf('player') > 0) {
             bot.player.on(event.name, (...args) => event.execute(...args));
         }
         else if (event.once) {
