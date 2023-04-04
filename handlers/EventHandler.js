@@ -12,6 +12,7 @@ module.exports = function loadEvents(bot) {
     for (const file of eventFiles) {
         const event = require(file);
 
+        // need to subscribe player events to bot.player
         if (event.once) {
             bot.once(event.name, (...args) => event.execute(...args));
         } else {
