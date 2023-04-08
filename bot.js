@@ -26,7 +26,7 @@ bot.player = new Player(bot, {
     leaveOnEmpty: true,
     leaveOnEmptyCooldown: 60000,
     autoSelfDeaf: true,
-    initialVolume: 50
+    initialVolume: 25
 });
 
 require("./handlers/EventHandler")(bot);
