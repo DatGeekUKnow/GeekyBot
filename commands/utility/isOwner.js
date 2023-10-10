@@ -9,7 +9,7 @@ module.exports = {
     async execute(interaction) {
         // interaction.user is the object representing the User who ran the command
         // interaction.member is the GuildMember object, which represents the user in the specific guild
-        if (interaction.user.id == ownerId) await interaction.reply({ content: `Yes! You are the server owner Geek!`, ephemeral: true });
+        if (interaction.user.id === ownerId) await interaction.reply({ content: `Yes! You are the server owner Geek!`, ephemeral: true });
         else await interaction.reply({ content: `Haha! You wish you created me ;)`, ephemeral: true });
     },
 };
