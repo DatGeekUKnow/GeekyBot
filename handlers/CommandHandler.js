@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const path = require('node:path');
 const Util = require('../modules/Util');
 

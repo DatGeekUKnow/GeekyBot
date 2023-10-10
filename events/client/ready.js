@@ -1,4 +1,5 @@
 const { Events } = require('discord.js');
+const chalk = require('chalk');
 
 module.exports = {
     name: Events.ClientReady,
