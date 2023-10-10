@@ -9,7 +9,6 @@ module.exports = {
         // interaction.user is the object representing the User who ran the command
         // interaction.member is the GuildMember object, which represents the user in the specific guild
         if (interaction.user.id == ownerId)  await interaction.reply({ content: `This command was run by the bot owner!, who joined on ${interaction.member.joinedAt}.`, ephemeral: true });
-
-        await interaction.reply({ content: `This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`, ephemeral: true });
+        else await interaction.reply({ content: `This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`, ephemeral: true });
     },
 };
