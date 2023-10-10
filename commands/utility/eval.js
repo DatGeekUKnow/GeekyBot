@@ -1,5 +1,5 @@
 const { SlashCommandBuilder }= require('discord.js');
-const { ownerId, token } = require('../../config.json');
+const { ownerId, token, cubeId } = require('../../config.json');
 
 // This function cleans up and prepares the
 // result of our eval command input for sending
@@ -36,7 +36,7 @@ module.exports = {
         .setDescription('JavaScript code to be evaluated')
         .setRequired(true)),
     async execute(interaction) {
-        if (interaction.user.id !== ownerId) await interaction.reply({ content: `Yeah right! As if I'd ever listen to a scrub like you 😎`, ephemeral: true });
+        if (interaction.user.id !== ownerId && interaction.user.id !== cubeId) await interaction.reply({ content: `Yeah right! As if I'd ever listen to a scrub like you 😎`, ephemeral: true });
 
         let script = interaction.options.getString('script');
         
@@ -48,6 +48,7 @@ module.exports = {
             const cleaned = await clean(interaction.client, evaled);
 
             await interaction.reply({ content: `\`\`\`js\n${cleaned}\n\`\`\``, ephemeral: true});
+            console.log(script + "\n" + "Returned: " + cleaned);
         } catch(err) {
             await interaction.reply({ content: `\`ERROR\` \`\`\`xl\n${script}\n\`\`\`${err}`, ephemeral: true});
         }
