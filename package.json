@@ -5,7 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "start": "node --no-warnings .",
-    "deploy-cmd": "node deploy-commands.js"
+    "deploy-cmd": "node deploy-commands.js",
+    "global-deploy": "node global-deploy.js"
   },
   "repository": {
     "type": "git",
