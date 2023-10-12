@@ -1,5 +1,5 @@
 // source: https://github.com/Aayush-683/BrokenDisc
-const chalk = require('chalk');
+const chalk = import("chalk").then(m=>m.default);
 
 class Logger {
   get now() {
@@ -17,33 +17,33 @@ class Logger {
    * @param {string} type
    * @param {string} error
    */
-  error(type, error) {
+  async error(error, type) {
     const err = error instanceof Error ? error.message : error;
-    return console.error(`${chalk.red("[ERROR]")}-[${this.now}]: ${err}`);
+    return console.error(`${(await chalk).red(type ?? "[ERROR]")}-[${this.now}]: ${err}`);
   }
 
   /**
    * @param {string} type
    * @param {string} warning
    */
-  warn(type, warning) {
-    return console.warn(`${chalk.yellow("[WARNING]")}-[${this.now}]: ${warning}`);
+  async warn(warning, type) {
+    return console.warn(`${(await chalk).yellow(type ?? "[WARNING]")}-[${this.now}]: ${warning}`);
   }
 
   /**
    * @param {string} type
    * @param {string} content
    */
-  info(type, content) {
-    return console.log(`${chalk.blueBright("[INFO]")}-[${this.now}]: ${content}`);
+  async info(content, type) {
+    return console.log(`${(await chalk).blueBright(type ?? "[INFO]")}-[${this.now}]: ${content}`);
   }
 
   /**
    * @param {string} type
    * @param {string} text
    */
-  debug(type, text) {
-    return console.log(`${chalk.green("[DEBUG]")}-[${this.now}]: ${text}`);
+  async debug(text, type) {
+    return console.log(`${(await chalk).green(type ?? "[DEBUG]")}-[${this.now}]: ${text}`);
   }
 }
 

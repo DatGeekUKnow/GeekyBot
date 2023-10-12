@@ -20,7 +20,7 @@
   "homepage": "https://github.com/DatGeekUKnow/GeekyBot#readme",
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "discord-player": "^6.1.0",
     "discord.js": "^14.7.1",
     "ffmpeg-static": "^5.1.0"
