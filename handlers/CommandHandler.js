@@ -1,5 +1,6 @@
 const path = require('node:path');
 const Util = require('../modules/Util');
+const { Collection } = require('discord.js');
 
 module.exports = function loadEvents(bot) {
 
@@ -10,7 +11,7 @@ module.exports = function loadEvents(bot) {
     const commandsPath = path.join(__dirname.substring(0, __dirname.lastIndexOf('/')), 'commands');
     const commandFiles = Util.getFileList(commandsPath);
     
-    bot.logger.info("COMMANDS", `Loading ${commandFiles.length} commands... (This may take a while)`);
+    bot.logger.info(`Loading ${commandFiles.length} commands... (This may take a while)`, "COMMANDS");
 
     for (const file of commandFiles) {
         const command = require(file);
@@ -21,7 +22,7 @@ module.exports = function loadEvents(bot) {
             console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property`);
         }
         
-        bot.logger.debug(`CMD DEBUG`, `Loaded ${command.data.name}.js`)
+        bot.logger.debug(`Loaded ${command.data.name}.js`, `CMD DEBUG`);
     }
 }
 

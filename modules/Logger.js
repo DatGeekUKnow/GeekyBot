@@ -19,7 +19,7 @@ class Logger {
    */
   async error(error, type) {
     const err = error instanceof Error ? error.message : error;
-    return console.error(`${(await chalk).red(type ?? "[ERROR]")}-[${this.now}]: ${err}`);
+    return console.error(`${(await chalk).red(`[${type}]` ?? "[ERROR]")}-[${this.now}]: ${err}`);
   }
 
   /**
@@ -27,7 +27,7 @@ class Logger {
    * @param {string} warning
    */
   async warn(warning, type) {
-    return console.warn(`${(await chalk).yellow(type ?? "[WARNING]")}-[${this.now}]: ${warning}`);
+    return console.warn(`${(await chalk).yellow(`[${type}]` ?? "[WARNING]")}-[${this.now}]: ${warning}`);
   }
 
   /**
@@ -35,7 +35,7 @@ class Logger {
    * @param {string} content
    */
   async info(content, type) {
-    return console.log(`${(await chalk).blueBright(type ?? "[INFO]")}-[${this.now}]: ${content}`);
+    return console.log(`${(await chalk).blueBright(`[${type}]` ?? "[INFO]")}-[${this.now}]: ${content}`);
   }
 
   /**
@@ -43,7 +43,7 @@ class Logger {
    * @param {string} text
    */
   async debug(text, type) {
-    return console.log(`${(await chalk).green(type ?? "[DEBUG]")}-[${this.now}]: ${text}`);
+    return console.log(`${(await chalk).green(`[${type}]` ?? "[DEBUG]")}-[${this.now}]: ${text}`);
   }
 }
 

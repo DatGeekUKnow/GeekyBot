@@ -7,7 +7,7 @@ module.exports = function loadEvents(bot) {
     const eventsPath = path.join(__dirname.substring(0, __dirname.lastIndexOf('/')), 'events');
     const eventFiles = Util.getFileList(eventsPath);
     
-    bot.logger.info("EVENTS", `Loading ${eventFiles.length} events...`)
+    bot.logger.info(`Loading ${eventFiles.length} events...`, "EVENTS");
 
     for (const file of eventFiles) {
         const event = require(file);
@@ -21,6 +21,6 @@ module.exports = function loadEvents(bot) {
         } else {
             bot.on(event.name, (...args) => event.execute(...args));
         }
-        bot.logger.debug(`EVT DEBUG`, `Loaded ${event.name}.js`)
+        bot.logger.debug(`Loaded ${event.name}.js`, `EVT DEBUG`);
     }
 }
