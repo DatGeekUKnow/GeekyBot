@@ -40,7 +40,7 @@ module.exports = {
         if (interaction.user.id !== ownerId && interaction.user.id !== cubeId) await interaction.reply({ content: `Yeah right! As if I'd ever listen to a scrub like you 😎`, ephemeral: true });
 
         let script = interaction.options.getString('script');
-        await interaction.deferReply();
+        await interaction.deferReply({ephemeral: true});
         try {
             // Evaluate (execute) the input
             const evaled = eval(script);
