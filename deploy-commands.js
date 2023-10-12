@@ -3,6 +3,7 @@ const {clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 const { getFileList } = require('./modules/Util');
+const logger = require('./modules/Logger.js')
 
 const commands = [];
 //Grab all the command files from the commands directory you created earlier
@@ -21,7 +22,7 @@ const rest = new REST({ version: '10' }).setToken(token);
 // and deploy your commands!
 (async () => {
     try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+        logger.debug(`Started refreshing ${commands.length} application (/) commands.`);
 
         // The put method is used to fully refresh all commands in the guild with the current set
         const data = await rest.put(
@@ -29,9 +30,9 @@ const rest = new REST({ version: '10' }).setToken(token);
             { body: commands },
         );
 
-        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+        logger.debug(`Successfully reloaded ${data.length} application (/) commands.`);
     } catch (error) {
         // And of courese, make sure you catch and log any errors!
-        console.error(error);
+        logger.error(error);
     }
 })();

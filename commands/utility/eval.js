@@ -1,5 +1,6 @@
 const { SlashCommandBuilder }= require('discord.js');
 const { ownerId, token, cubeId } = require('../../config.json');
+const logger = require('../../modules/Logger');
 
 // This function cleans up and prepares the
 // result of our eval command input for sending
@@ -39,7 +40,7 @@ module.exports = {
         if (interaction.user.id !== ownerId && interaction.user.id !== cubeId) await interaction.reply({ content: `Yeah right! As if I'd ever listen to a scrub like you 😎`, ephemeral: true });
 
         let script = interaction.options.getString('script');
-        
+        await interaction.deferReply();
         try {
             // Evaluate (execute) the input
             const evaled = eval(script);
@@ -47,10 +48,10 @@ module.exports = {
             // clean the result
             const cleaned = await clean(interaction.client, evaled);
 
-            await interaction.reply({ content: `\`\`\`js\n${cleaned}\n\`\`\``, ephemeral: true});
-            console.log(script + "\n" + "Returned: " + cleaned);
+            await interaction.editReply({ content: `\`\`\`js\n${cleaned}\n\`\`\``, ephemeral: true});
+            logger.warn("script: " + script + "\n" + "Returned: " + cleaned);
         } catch(err) {
-            await interaction.reply({ content: `\`ERROR\` \`\`\`xl\n${script}\n\`\`\`${err}`, ephemeral: true});
+            await interaction.editReply({ content: `\`ERROR\` \`\`\`xl\n${script}\n\`\`\`${err}`, ephemeral: true});
         }
 
     },
