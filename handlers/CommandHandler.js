@@ -3,6 +3,8 @@ const Util = require('../modules/Util');
 
 module.exports = function loadEvents(bot) {
 
+    bot.commands = new Collection();
+
     // load in all command files
 
     const commandsPath = path.join(__dirname.substring(0, __dirname.lastIndexOf('/')), 'commands');

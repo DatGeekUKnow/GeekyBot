@@ -14,8 +14,6 @@ const bot = new Client({ intents: [
     ] 
 });
 
-bot.commands = new Collection();
-
 bot.logger = Logger;
 bot.say = Embeds;
 
