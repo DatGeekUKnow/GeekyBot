@@ -12,7 +12,7 @@ module.exports = {
         async execute(interaction) {
             let message = interaction.options.getString('message');
             let heads = Math.random() < 0.5;
-            if (heads) await interaction.reply({ content:message, files: ['./GeekyBot/attachments/coin_flip_heads.gif']});
-            else await interaction.reply({ content:message, files: ['./GeekyBot/attachments/coin_flip_tails.gif']});
+            if (heads) await interaction.reply({ content:message, files: ['./attachments/coin_flip_heads.gif']});
+            else await interaction.reply({ content:message, files: ['./attachments/coin_flip_tails.gif']});
         },
 };
